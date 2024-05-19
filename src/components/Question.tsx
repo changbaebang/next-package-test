@@ -1,8 +1,15 @@
 import dynamic from 'next/dynamic';
 
-const CustomFaBars = dynamic(() =>
-  import('react-icons/fa').then((icon) => icon.FaBars)
-);
+const Empty = () => <></>;
+
+const CustomFaBars = dynamic(async () => {
+  try {
+    const icon = await import('react-my-icons/fa');
+    return icon.FaBars;
+  } catch (error) {
+    return Empty;
+  }
+});
 
 const Question = () => {
   return (
